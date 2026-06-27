@@ -15,6 +15,7 @@ class AuthMiddleware:
             user = self._authenticate(token)
             if user:
                 request.user = user
+                request._force_auth_user = user
         return self.get_response(request)
 
     def _extract_token(self, request):
